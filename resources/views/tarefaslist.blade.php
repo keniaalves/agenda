@@ -9,15 +9,14 @@
 
                 <div class="card-body">
                 @forelse($tarefas as $tarefas)
-                    <div class="alert alert-success">
-                        {{ $tarefas->titulo }}
-                    </div>
-                    @empty
-                    <div class="alert alert-success">
-                        <p>Nothing to say... </p>
-                    </div>
+                <ul class="list-group">
+                    <li class="list-group-item">{{ $tarefas->titulo}} - {{ $tarefas->data}}</li>
+                </ul>
+                @empty
+                <div class="alert alert-danger">
+                    <p>Nothing to say... </p>
+                </div>
                 @endforelse
-                    Lista de tarefas
                 </div>
             </div>
         </div>

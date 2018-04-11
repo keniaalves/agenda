@@ -17,7 +17,10 @@ Route::get('/', function () {
 
 Route::get('tarefaslist', 'TarefaController@index');
 
-Route::get('tarefascreate', 'TarefaController@create');
+Route::get('tarefasreate', 'TarefaController@create');
+
+Route::post('tarefasstore', 'TarefaController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
