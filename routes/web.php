@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tarefaslist', 'TarefaController@index');
+
+Route::get('tarefascreate', 'TarefaController@create');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
