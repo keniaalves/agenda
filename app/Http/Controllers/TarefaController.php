@@ -39,10 +39,9 @@ class TarefaController extends Controller
         return view('tarefasDelete',['tarefas' => Tarefa::findOrFail($id)->delete($id)]);
     }
 
-    public function editar($id)
+    public function edit($id)
     {
-        $tarefas = Tarefa::findOrFail($id);
-        return view('tarefasEditar', compact('tarefas'));
+        return view('tarefasEdit', ['tarefas' => Tarefa::findOrFail($id)]);
     }
 
     public function update(Request $request)

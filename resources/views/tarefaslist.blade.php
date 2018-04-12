@@ -15,8 +15,10 @@
                         <form action="{{ route('tarefasDelete', $tarefas->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger">Deletar</button>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                        <a href="{{ route('tarefasEdit', $tarefas) }}">Editar</a>
                     </li>
                 </ul>
                 @empty
