@@ -18,13 +18,13 @@ class TarefaController extends Controller
         return view('tarefascreate');
     }
 
-    public function store(TarefaRequest $request)
+    public function store(Request $request)
     {
         $tarefa = new Tarefa;
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
         $tarefa->data = $request->data;
-        $tarefa->save;
+        $tarefa->save();
 
         return view('tarefasstore');
     }
