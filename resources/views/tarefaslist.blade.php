@@ -10,7 +10,14 @@
                 <div class="card-body">
                 @forelse($tarefas as $tarefas)
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ route('tarefasShow', $tarefas->id) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a></li>
+                    <li class="list-group-item">
+                        <a href="{{ route('tarefasShow', $tarefas->id) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a>
+                        <form action="{{ route('tarefasDelete', $tarefas->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger">Deletar</button>
+                    </li>
                 </ul>
                 @empty
                 <div class="alert alert-danger">
