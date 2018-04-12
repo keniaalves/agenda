@@ -10,7 +10,7 @@
                 <div class="card-body">
                 @forelse($tarefas as $tarefas)
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ route('/tarefasShow', $tarefas->id) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a></li>
+                    <li class="list-group-item"><a href="{{ route('tarefasShow', $tarefas->id) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a></li>
                 </ul>
                 @empty
                 <div class="alert alert-danger">
