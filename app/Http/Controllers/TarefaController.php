@@ -50,7 +50,7 @@ class TarefaController extends Controller
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
         $tarefa->data = $request->data;
-        $tarefa->save();
+        $tarefa->save($id);
 
         return view('tarefasUpdate');
     }
