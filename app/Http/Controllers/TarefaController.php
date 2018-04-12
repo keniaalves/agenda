@@ -10,12 +10,12 @@ class TarefaController extends Controller
     public function index()
     {
         $tarefas = Tarefa::all();
-        return view('tarefaslist', compact('tarefas'));
+        return view('tarefasList', compact('tarefas'));
     }
 
     public function create()
     {
-        return view('tarefascreate');
+        return view('tarefasCreate');
     }
 
     public function store(Request $request)
@@ -26,6 +26,10 @@ class TarefaController extends Controller
         $tarefa->data = $request->data;
         $tarefa->save();
 
-        return view('tarefasstore');
+        return view('tarefasStore');
+    }
+
+    public function show($id){
+        return view('tarefasShow',['tarefas' => Tarefa::findOrFail($id)]);
     }
 }

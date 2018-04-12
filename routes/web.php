@@ -4,11 +4,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('tarefaslist', 'TarefaController@index');
+Route::get('tarefasList', 'TarefaController@index')->name('tarefasList');
 
-Route::get('tarefascreate', 'TarefaController@create')->name('tarefascreate');
+Route::get('tarefasCreate', 'TarefaController@create')->name('tarefasCreate');
 
-Route::post('tarefasstore', 'TarefaController@store')->name('tarefasstore');
+Route::post('tarefasStore', 'TarefaController@store')->name('tarefasStore');
+
+Route::get('tarefasShow/{id}', 'TarefaController@show')->name('tarefasShow');
 
 Auth::routes();
 
