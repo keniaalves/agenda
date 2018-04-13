@@ -11,7 +11,7 @@
                 @forelse($tarefas as $tarefas)
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="{{ route('tarefasShow', $tarefas->id) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a>
+                        <a href="{{ route('tarefasShow', $tarefas) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a>
                         <form action="{{ route('tarefasDelete', $tarefas->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}

@@ -52,6 +52,6 @@ class TarefaController extends Controller
         $tarefa->data = $request->data;
         $tarefa->save($id);
 
-        return view('tarefasUpdate');
+        return view('tarefasUpdate', ['tarefas' => Tarefa::findOrFail($id)->update($id)]);
     }
 }

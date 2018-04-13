@@ -16,7 +16,7 @@ Route::delete('tarefasDelete/{id}', 'TarefaController@delete')->name('tarefasDel
 
 Route::get('tarefasEdit/{id}', 'TarefaController@edit')->name('tarefasEdit');
 
-Route::put('tarefasUpdate/{id}', 'TarefaController@update')->name('tarefasUpdate');
+Route::put('tarefasUpdate', 'TarefaController@update')->name('tarefasUpdate');
 
 Auth::routes();
 
