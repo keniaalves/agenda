@@ -9,4 +9,8 @@ class Pessoa extends Model
     public $fillable = ['nome','aniversario','telefone'];
     public $guarded = ['id', 'created_at', 'update_at'];
     public $table = 'pessoas'; 
+
+    public function tarefas(){
+        return $this->belongsToMany(Tarefa::class);
+    }
 }
