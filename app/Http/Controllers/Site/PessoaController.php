@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Pessoa;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PessoaController extends Controller
 {
@@ -14,7 +15,8 @@ class PessoaController extends Controller
      */
     public function index()
     {
-        //
+        $pessoas = Pessoa::all();
+        return view('pessoasList', compact('pessoas'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PessoaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pessoasCreate');
     }
 
     /**
@@ -35,7 +37,13 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pessoa = new Pessoa;
+        $pessoa->nome = $request->nome;
+        $pessoa->aniversario = $request->aniversario;
+        $pessoa->telefone = $request->telefone;
+        $pessoa->save();
+
+        return view('pessoasStore');
     }
 
     /**
@@ -44,9 +52,9 @@ class PessoaController extends Controller
      * @param  \App\Pessoa  $pessoa
      * @return \Illuminate\Http\Response
      */
-    public function show(Pessoa $pessoa)
+    public function show($id)
     {
-        //
+        return view('pessoasShow',['pessoas' => Pessoa::findOrFail($id)]);
     }
 
     /**
@@ -55,9 +63,10 @@ class PessoaController extends Controller
      * @param  \App\Pessoa  $pessoa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pessoa $pessoa)
+    public function edit($id)
     {
-        //
+        $pessoas = Pessoa::findOrFail($id);
+        return view('pessoasEdit', compact('pessoas')); 
     }
 
     /**
@@ -67,9 +76,17 @@ class PessoaController extends Controller
      * @param  \App\Pessoa  $pessoa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pessoa $pessoa)
+    public function update(Request $request, $id)
     {
-        //
+        $pessoa = Pessoa::find($id);
+
+        $pessoa->nome = $request->nome;
+        $pessoa->aniversario = $request->aniversario;
+        $pessoa->telefone = $request->telefone;
+
+        $pessoa->save();
+        
+        return view('pessoasUpdate');
     }
 
     /**
@@ -78,8 +95,8 @@ class PessoaController extends Controller
      * @param  \App\Pessoa  $pessoa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pessoa $pessoa)
+    public function delete($id)
     {
-        //
+        return view('pessoasDelete',['pessoas' => Pessoa::findOrFail($id)->delete($id)]);
     }
 }
