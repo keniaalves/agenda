@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Site;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Tarefa;
 
@@ -46,12 +47,12 @@ class TarefaController extends Controller
         return view('tarefasEdit', compact('tarefas'));
     }
 
-    public function update(Request $request, Tarefa $tarefa)
+    public function update(Request $request, $id)
     {
         $tarefas = Tarefa::findOrFail($id);
-        $tarefa->titulo = Request::input('titulo');
-        $tarefa->descricao = Request::input('descricao');
-        $tarefa->data = Request::input('data');
+        $tarefa->titulo = $request->input('titulo');
+        $tarefa->descricao = $request->input('descricao');
+        $tarefa->data = $request->input('data');
         $tarefa->save();
 
         return view('tarefasUpdate', ['tarefas' => Tarefa::findOrFail($id)]);
