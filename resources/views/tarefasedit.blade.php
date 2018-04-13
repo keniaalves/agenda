@@ -8,8 +8,9 @@
                 <div class="card-header">{{ __('Editar') }}</div>
 
                 <div class="card-body">
-                    <form method="PUT" action="{{ route('tarefasUpdate', $tarefas) }}">
-                        @csrf
+                    <form action="{{ route('tarefasUpdate', $tarefas->id) }}">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT')}} 
 
                         <div class="form-group row">
                             <label for="titulo" class="col-md-4 col-form-label text-md-right">{{ __('Título') }}</label>

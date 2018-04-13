@@ -18,7 +18,7 @@
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger">Deletar</button>
                         </form>
-                        <a href="{{ route('tarefasEdit', $tarefas) }}">Editar</a>
+                        <a href="{{ route('tarefasEdit', $tarefas->id) }}">Editar</a>
                     </li>
                 </ul>
                 @empty

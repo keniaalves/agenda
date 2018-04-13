@@ -29,7 +29,7 @@ class TarefaController extends Controller
         return view('tarefasStore');
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         return view('tarefasShow',['tarefas' => Tarefa::findOrFail($id)]);
     }
@@ -41,17 +41,20 @@ class TarefaController extends Controller
 
     public function edit($id)
     {
-        return view('tarefasEdit', ['tarefas' => Tarefa::findOrFail($id)]);
+        //return view('tarefasEdit', ['tarefas' => Tarefa::findOrFail($id)]);
+        $tarefas = Tarefa::findOrFail($id);
+        return view('tarefasEdit', compact('tarefas'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Tarefa $tarefa)
     {
         $tarefas = Tarefa::findOrFail($id);
-        $tarefa->titulo = $request->titulo;
-        $tarefa->descricao = $request->descricao;
-        $tarefa->data = $request->data;
-        $tarefa->save($id);
+        $tarefa->titulo = Request::input('titulo');
+        $tarefa->descricao = Request::input('descricao');
+        $tarefa->data = Request::input('data');
+        $tarefa->save();
 
-        return view('tarefasUpdate', ['tarefas' => Tarefa::findOrFail($id)->update($id)]);
+        return view('tarefasUpdate', ['tarefas' => Tarefa::findOrFail($id)]);
+        //return view('tarefasUpdate');
     }
 }
