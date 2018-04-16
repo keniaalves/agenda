@@ -20,6 +20,10 @@ Route::group(['namespace'=>'Site', 'middleware'=>'auth'], function () {
     Route::delete('pessoasDelete/{id}', 'PessoaController@delete')->name('pessoasDelete');
     Route::get('pessoasEdit/{id}', 'PessoaController@edit')->name('pessoasEdit');
     Route::put('pessoasUpdate/{id}', 'PessoaController@update')->name('pessoasUpdate');  
+
+    Route::get('mostrarPessoas{id}', 'TarefaController@mostrarPessoas')->name('mostrarPessoas');
+    Route::get('mostrarTarefas{id}', 'PessoaController@mostrarTarefas')->name('mostrarTarefas');
+
 });
 
 Auth::routes();

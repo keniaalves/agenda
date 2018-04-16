@@ -13,4 +13,8 @@ class Pessoa extends Model
     public function tarefas(){
         return $this->belongsToMany(Tarefa::class);
     }
+
+    public function telefone(){
+        return $this->hasMany(Telefone::class, 'pessoa_id');
+    }
 }

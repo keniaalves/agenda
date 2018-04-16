@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Pessoa;
 use App\Tarefa;
 
 class TarefaController extends Controller
@@ -57,5 +58,12 @@ class TarefaController extends Controller
         $tarefa->save();
         
         return view('tarefasUpdate');
+    }
+
+    public function mostrarPessoas($id){
+        $tarefas = Tarefa::find($id);
+        $pessoas = $tarefas->pessoas;
+
+        return view('mostrarPessoas', compact('pessoas'));
     }
 }

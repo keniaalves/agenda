@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Pessoa;
+use App\Tarefa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -98,5 +99,12 @@ class PessoaController extends Controller
     public function delete($id)
     {
         return view('pessoasDelete',['pessoas' => Pessoa::findOrFail($id)->delete($id)]);
+    }
+
+    public function mostrarTarefas($id){
+        $pessoas = Pessoa::find($id);
+        $tarefas = $pessoas->tarefas;
+
+        return view('mostrarTarefas', compact('tarefas'));
     }
 }
