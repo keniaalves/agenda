@@ -64,6 +64,6 @@ class TarefaController extends Controller
         $tarefas = Tarefa::find($id);
         $pessoas = $tarefas->pessoas;
 
-        return view('mostrarPessoas', compact('pessoas'));
+        return view('mostrarPessoas', compact('pessoas','tarefas'));
     }
 }

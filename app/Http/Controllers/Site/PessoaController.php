@@ -105,6 +105,6 @@ class PessoaController extends Controller
         $pessoas = Pessoa::find($id);
         $tarefas = $pessoas->tarefas;
 
-        return view('mostrarTarefas', compact('tarefas'));
+        return view('mostrarTarefas', compact('tarefas', 'pessoas'));
     }
 }
