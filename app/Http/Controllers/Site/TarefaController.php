@@ -12,12 +12,12 @@ class TarefaController extends Controller
     public function index()
     {
         $tarefas = Tarefa::all();
-        return view('tarefasList', compact('tarefas'));
+        return view('tarefas/tarefasList', compact('tarefas'));
     }
 
     public function create()
     {
-        return view('tarefasCreate');
+        return view('tarefas/tarefasCreate');
     }
 
     public function store(Request $request)
@@ -28,23 +28,23 @@ class TarefaController extends Controller
         $tarefa->data = $request->data;
         $tarefa->save();
 
-        return view('tarefasStore');
+        return view('tarefas/tarefasStore');
     }
 
     public function show(Request $request, $id)
     {
-        return view('tarefasShow',['tarefas' => Tarefa::findOrFail($id)]);
+        return view('tarefas/tarefasShow',['tarefas' => Tarefa::findOrFail($id)]);
     }
 
     public function delete($id)
     {
-        return view('tarefasDelete',['tarefas' => Tarefa::findOrFail($id)->delete($id)]);
+        return view('tarefas/tarefasDelete',['tarefas' => Tarefa::findOrFail($id)->delete($id)]);
     }
 
     public function edit($id)
     {
         $tarefas = Tarefa::findOrFail($id);
-        return view('tarefasEdit', compact('tarefas'));
+        return view('tarefas/tarefasEdit', compact('tarefas'));
     }
 
     public function update(Request $request, $id)
@@ -57,13 +57,13 @@ class TarefaController extends Controller
 
         $tarefa->save();
         
-        return view('tarefasUpdate');
+        return view('tarefas/tarefasUpdate');
     }
 
     public function mostrarPessoas($id){
         $tarefas = Tarefa::find($id);
         $pessoas = $tarefas->pessoas;
 
-        return view('mostrarPessoas', compact('pessoas','tarefas'));
+        return view('tarefas/mostrarPessoas', compact('pessoas','tarefas'));
     }
 }

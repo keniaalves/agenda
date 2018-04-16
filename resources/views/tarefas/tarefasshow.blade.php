@@ -15,7 +15,7 @@
                         <li class="list-group-item"><strong>Descricao da tarefa: </strong>{{ $tarefas->descricao}}</li>
                         <li class="list-group-item"><strong>Data de criacao da tarefa: </strong>{{ $tarefas->created_at}}</li>
                         <li class="list-group-item"><strong>Data de alteracao da tarefa: </strong>{{ $tarefas->updated_at}}</li>
-                        <li class="list-group-item"><strong>Pessoas envolvidas: </strong><a href="{{ route('mostrarPessoas', $tarefas->id) }}">Pessoas</a></li>
+                        <li class="list-group-item"><strong>Pessoas envolvidas: </strong><a href="{{ route('tarefas/mostrarPessoas', $tarefas->id) }}">Pessoas</a></li>
                     </ul>
                 </div>
             </div>

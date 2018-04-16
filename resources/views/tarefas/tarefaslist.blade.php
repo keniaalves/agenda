@@ -11,14 +11,14 @@
                 @forelse($tarefas as $tarefas)
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="{{ route('tarefasShow', $tarefas) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a>
-                        <form action="{{ route('tarefasDelete', $tarefas->id) }}" method="POST">
+                        <a href="{{ route('tarefas/tarefasShow', $tarefas) }}">{{ $tarefas->titulo}} - {{ $tarefas->data}}</a>
+                        <form action="{{ route('tarefas/tarefasDelete', $tarefas->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger">Deletar</button>
                         </form>
-                        <a href="{{ route('tarefasEdit', $tarefas->id) }}">Editar</a>
+                        <a href="{{ route('tarefas/tarefasEdit', $tarefas->id) }}">Editar</a>
                     </li>
                 </ul>
                 @empty

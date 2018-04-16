@@ -17,7 +17,7 @@ class PessoaController extends Controller
     public function index()
     {
         $pessoas = Pessoa::all();
-        return view('pessoasList', compact('pessoas'));
+        return view('pessoas/pessoasList', compact('pessoas'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PessoaController extends Controller
      */
     public function create()
     {
-        return view('pessoasCreate');
+        return view('pessoas/pessoasCreate');
     }
 
     /**
@@ -44,7 +44,7 @@ class PessoaController extends Controller
         $pessoa->telefone = $request->telefone;
         $pessoa->save();
 
-        return view('pessoasStore');
+        return view('pessoas/pessoasStore');
     }
 
     /**
@@ -55,7 +55,7 @@ class PessoaController extends Controller
      */
     public function show($id)
     {
-        return view('pessoasShow',['pessoas' => Pessoa::findOrFail($id)]);
+        return view('pessoas/pessoasShow',['pessoas' => Pessoa::findOrFail($id)]);
     }
 
     /**
@@ -67,7 +67,7 @@ class PessoaController extends Controller
     public function edit($id)
     {
         $pessoas = Pessoa::findOrFail($id);
-        return view('pessoasEdit', compact('pessoas')); 
+        return view('pessoas/pessoasEdit', compact('pessoas')); 
     }
 
     /**
@@ -87,7 +87,7 @@ class PessoaController extends Controller
 
         $pessoa->save();
         
-        return view('pessoasUpdate');
+        return view('pessoas/pessoasUpdate');
     }
 
     /**
@@ -98,13 +98,13 @@ class PessoaController extends Controller
      */
     public function delete($id)
     {
-        return view('pessoasDelete',['pessoas' => Pessoa::findOrFail($id)->delete($id)]);
+        return view('pessoas/pessoasDelete',['pessoas' => Pessoa::findOrFail($id)->delete($id)]);
     }
 
     public function mostrarTarefas($id){
         $pessoas = Pessoa::find($id);
         $tarefas = $pessoas->tarefas;
 
-        return view('mostrarTarefas', compact('tarefas', 'pessoas'));
+        return view('pessoas/mostrarTarefas', compact('tarefas', 'pessoas'));
     }
 }

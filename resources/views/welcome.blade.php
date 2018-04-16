@@ -83,10 +83,10 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('tarefasCreate') }}">Nova Tarefa</a>
-                    <a href="{{ route('pessoasCreate') }}">Novo Contato</a>
-                    <a href="{{ route('tarefasList') }}">Visualizar Tarefas</a>
-                    <a href="{{ route('pessoasList') }}">Visualizar Contatos</a>
+                    <a href="{{ route('tarefas/tarefasCreate') }}">Nova Tarefa</a>
+                    <a href="{{ route('pessoas/pessoasCreate') }}">Novo Contato</a>
+                    <a href="{{ route('tarefas/tarefasList') }}">Visualizar Tarefas</a>
+                    <a href="{{ route('pessoas/pessoasList') }}">Visualizar Contatos</a>
                 </div>
             </div>
         </div>

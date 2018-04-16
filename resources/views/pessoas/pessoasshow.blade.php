@@ -13,7 +13,7 @@
                         <li class="list-group-item"><strong>Nome: </strong>{{ $pessoas->nome}}</li>
                         <li class="list-group-item"><strong>Telefone: </strong>{{ $pessoas->telefone}}</li>
                         <li class="list-group-item"><strong>Nascimento: </strong>{{ $pessoas->aniversario}}</li>
-                        <li class="list-group-item"><strong>Tarefas relacionadas: </strong><a href="{{ route('mostrarTarefas', $pessoas->id) }}">Tarefas</a></li>
+                        <li class="list-group-item"><strong>Tarefas relacionadas: </strong><a href="{{ route('pessoas/mostrarTarefas', $pessoas->id) }}">Tarefas</a></li>
 
                     </ul>
                 </div>

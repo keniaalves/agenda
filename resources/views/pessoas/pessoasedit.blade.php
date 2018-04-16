@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Editar') }}</div>
 
                 <div class="card-body">
-                    <form method='POST' action="{{ route('pessoasUpdate', $pessoas->id) }}">
+                    <form method='POST' action="{{ route('pessoas/pessoasUpdate', $pessoas->id) }}">
                     {{ csrf_field() }}
                     {{ method_field('PUT')}} 
 
