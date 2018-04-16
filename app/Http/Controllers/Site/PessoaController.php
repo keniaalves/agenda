@@ -43,9 +43,13 @@ class PessoaController extends Controller
         $pessoa->nome = $request->nome;
         $pessoa->aniversario = $request->aniversario;
         $pessoa->telefone = $request->telefone;
+
         $pessoa->save();
 
-        return view('pessoas/pessoasStore');
+        $pessoa->tarefas()->sync(1);
+
+
+        return view('pessoas/pessoasStore', compact('tarefas'));
     }
 
     /**

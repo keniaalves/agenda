@@ -57,7 +57,8 @@
                         <label for="tarefa" class="col-md-4 col-form-label text-md-right">{{ __('Tarefa') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="exampleFormControlSelect1" name="Selecione">
+                                <select class="form-control" id="id" name="id" multiple data-actions-box="true">
+                                    <option disabled>Selecione</option>
                                     @forelse($tarefas as $tarefas)
                                     <option>{{ $tarefas->id}} - {{ $tarefas->descricao}}</option>
                                     @empty
