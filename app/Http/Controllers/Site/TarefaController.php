@@ -17,7 +17,8 @@ class TarefaController extends Controller
 
     public function create()
     {
-        return view('tarefas/tarefasCreate');
+        $pessoas = Pessoa::all();
+        return view('tarefas/tarefasCreate', compact('pessoas'));
     }
 
     public function store(Request $request)
@@ -28,7 +29,7 @@ class TarefaController extends Controller
         $tarefa->data = $request->data;
         $tarefa->save();
 
-        return view('tarefas/tarefasStore');
+        return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
     }
 
     public function show(Request $request, $id)

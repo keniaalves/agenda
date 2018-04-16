@@ -27,7 +27,8 @@ class PessoaController extends Controller
      */
     public function create()
     {
-        return view('pessoas/pessoasCreate');
+        $tarefas = Tarefa::all();
+        return view('pessoas/pessoasCreate', compact('tarefas'));
     }
 
     /**

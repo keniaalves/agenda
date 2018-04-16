@@ -52,6 +52,21 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                        <label for="tarefa" class="col-md-4 col-form-label text-md-right">{{ __('Tarefa') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="exampleFormControlSelect1" name="Selecione">
+                                    @forelse($tarefas as $tarefas)
+                                    <option>{{ $tarefas->id}} - {{ $tarefas->descricao}}</option>
+                                    @empty
+                                    <option>Sem tarefas ainda.</option>
+                                    @endforelse
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
