@@ -23,10 +23,7 @@ class TarefaController extends Controller
 
     public function store(Request $request)
     {
-        $tarefa = new Tarefa;
-        $tarefa->titulo = $request->titulo;
-        $tarefa->descricao = $request->descricao;
-        $tarefa->data = $request->data;
+        $tarefa = new Tarefa($request->all());
         $tarefa->save();
 
         $tarefa->pessoas()->attach($request->pessoas_id);
@@ -53,11 +50,7 @@ class TarefaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $tarefa = Tarefa::find($id);
-
-        $tarefa->titulo = $request->titulo;
-        $tarefa->descricao = $request->descricao;
-        $tarefa->data = $request->data;
+        $tarefa = Tarefa::find($request->all());
 
         $tarefa->pessoas()->attach($request->pessoa);
 

@@ -53,7 +53,22 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row mb-0">
+
+                        <div class="row">
+                            <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Tarefas') }}</label>
+                            <div class="col-md-6 boxes">
+                            @forelse($tarefas as $tarefas)
+                                <label class="checkbox">  
+                                    <input type="checkbox" name="tarefas_id" value='{{$tarefas->id}}'>
+                                        {{ $tarefas->id}} - {{ $tarefas->descricao}}
+                                    </label></br>
+                                    @empty
+                                    <p>Sem tarefas</p>
+                            @endforelse
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-4">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Atualizar') }}

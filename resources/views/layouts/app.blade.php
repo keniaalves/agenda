@@ -21,6 +21,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+    <style>
+        .boxes {
+            height: 75px;
+            overflow: auto;
+            width: 400px;
+            
+        }
+    </style>
 </head>
 <body>
     <div id="app">

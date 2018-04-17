@@ -53,22 +53,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                        <label for="tarefa" class="col-md-4 col-form-label text-md-right">{{ __('Tarefa') }}</label>
-
-                            <div class="col-md-6">
-                                <select class="form-control" id="tarefas_id" name="tarefas_id[]" multiple data-actions-box="true">
-                                    <option disabled>Selecione</option>
-                                    @forelse($tarefas as $tarefa)
-                                    <option value='{{ $tarefa->id }}'>{{ $tarefa->id}} - {{ $tarefa->descricao}}</option>
-                                    @empty
-                                    <option>Sem tarefas ainda.</option>
-                                    @endforelse
-                                </select>
+                        <div class="row">
+                        <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Tarefas') }}</label>
+                            <div class="col-md-6 boxes">
+                            @forelse($tarefas as $tarefas)
+                                <label class="checkbox">  
+                                    <input type="checkbox" name="tarefas_id" value='{{$tarefas->id}}'>
+                                        {{ $tarefas->id}} - {{ $tarefas->descricao}}
+                                </label> </br> 
+                                @empty
+                                <p>Sem tarefas</p>
+                            @endforelse
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mt-4">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Criar') }}

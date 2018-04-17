@@ -54,49 +54,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group row"> 
-                            <div class="col-md-10"></div>
-
-                                <a class="btn btn-primary" href="javascript:void(0)" id="addInput">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    +
-                                </a>
+                        <div class="row m-1">
+                            <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Contatos') }}</label>
+                            <div class="col-md-6 boxes">
+                            @forelse($pessoas as $pessoas)
+                                <label class="checkbox">  
+                                    <input type="checkbox" name="pessoas_id" value='{{$pessoas->id}}'>
+                                        {{ $pessoas->id}} - {{ $pessoas->nome}}
+                                </label> </br>       
+                                @empty
+                                    <p>Sem contatos</p>
+                            @endforelse       
                             </div>
                         </div>
 
-                        <div class="form-group row" id="dynamicDiv">
-                        <label for="pessoa" class="col-md-4 col-form-label text-md-right">{{ __('Pessoa') }}</label>
-                            <div class="col-md-6">
-                                <select class="form-control" id="inputeste" name="pessoas_id">
-                                    @forelse($pessoas as $pessoas)
-                                    <option value='{{$pessoas->id}}'>{{ $pessoas->id}} - {{ $pessoas->nome}}</option>
-                                    @empty
-                                    <option>Sem pessoas ainda.</option>
-                                    @endforelse
-                                </select>
-                            </div>
-                            <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                                -
-                            </a>
-                        </div>
-
-                        <script>
-                            $(function () {
-                                var teste = $('#dynamicDiv').html();
-                                
-                                $(document).on('click', '#addInput', function () {
-                                    $(teste).appendTo(dynamicDiv);
-                                    return false;
-                                });
-                                $(document).on('click', '#remInput', function () {
-                                    $(this).parents('#dynamicDiv').remove(teste);
-                                    return false;
-                                });
-                            });
-                        </script>
-
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mt-4">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Atualizar') }}

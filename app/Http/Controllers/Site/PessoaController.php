@@ -42,18 +42,9 @@ class PessoaController extends Controller
     {
         $pessoa = new Pessoa($request->all());
         $pessoa->save();
-        // foreach ($request->tarefas_id as $tarefa_id){
-        //     $pessoatarefa = new PessoaTarefa([
-        //         'pessoa_id' => $pessoa->id,
-        //         'tarefa_id' => $tarefa_id
-        //     ]);
-        //     $pessoatarefa->save();
-        // }
         
         $pessoa->tarefas()->attach($request->tarefas_id);
         
-
-
         return view('pessoas/pessoasStore', compact('tarefas'));
     }
 
@@ -76,8 +67,9 @@ class PessoaController extends Controller
      */
     public function edit($id)
     {
+        $tarefas = Tarefa::all();
         $pessoas = Pessoa::findOrFail($id);
-        return view('pessoas/pessoasEdit', compact('pessoas')); 
+        return view('pessoas/pessoasEdit', compact('pessoas', 'tarefas')); 
     }
 
     /**
@@ -96,6 +88,8 @@ class PessoaController extends Controller
         $pessoa->telefone = $request->telefone;
 
         $pessoa->save();
+
+        $pessoa->tarefas()->attach($request->tarefas_id);
         
         return view('pessoas/pessoasUpdate');
     }
