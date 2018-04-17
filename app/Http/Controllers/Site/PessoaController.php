@@ -46,8 +46,6 @@ class PessoaController extends Controller
 
         $pessoa->save();
 
-        $pessoa->tarefas()->sync(1);
-
 
         return view('pessoas/pessoasStore', compact('tarefas'));
     }

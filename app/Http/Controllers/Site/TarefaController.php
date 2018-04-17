@@ -29,6 +29,8 @@ class TarefaController extends Controller
         $tarefa->data = $request->data;
         $tarefa->save();
 
+        $tarefa->pessoas()->attach($request->pessoa);
+
         return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
     }
 
@@ -44,8 +46,9 @@ class TarefaController extends Controller
 
     public function edit($id)
     {
+        $pessoas = Pessoa::all();
         $tarefas = Tarefa::findOrFail($id);
-        return view('tarefas/tarefasEdit', compact('tarefas'));
+        return view('tarefas/tarefasEdit', compact('tarefas', 'pessoas'));
     }
 
     public function update(Request $request, $id)
@@ -55,6 +58,8 @@ class TarefaController extends Controller
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
         $tarefa->data = $request->data;
+
+        $tarefa->pessoas()->attach($request->pessoa);
 
         $tarefa->save();
         

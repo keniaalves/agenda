@@ -57,9 +57,9 @@
                         <label for="pessoa" class="col-md-4 col-form-label text-md-right">{{ __('Pessoa') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="exampleFormControlSelect1" name="Selecione">
+                                <select class="form-control" id="exampleFormControlSelect1" name="pessoa">
                                     @forelse($pessoas as $pessoas)
-                                    <option>{{ $pessoas->id}} - {{ $pessoas->nome}}</option>
+                                    <option value='{{$pessoas->id}}'>{{ $pessoas->id}} - {{ $pessoas->nome}}</option>
                                     @empty
                                     <option>Sem pessoas ainda.</option>
                                     @endforelse
