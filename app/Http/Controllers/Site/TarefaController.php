@@ -29,7 +29,7 @@ class TarefaController extends Controller
         $tarefa->data = $request->data;
         $tarefa->save();
 
-        $tarefa->pessoas()->attach($request->pessoa);
+        $tarefa->pessoas()->attach($request->pessoas_id);
 
         return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Pessoa;
 use App\Tarefa;
+use App\PessoaTarefa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,12 +40,18 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-        $pessoa = new Pessoa;
-        $pessoa->nome = $request->nome;
-        $pessoa->aniversario = $request->aniversario;
-        $pessoa->telefone = $request->telefone;
-
+        $pessoa = new Pessoa($request->all());
         $pessoa->save();
+        // foreach ($request->tarefas_id as $tarefa_id){
+        //     $pessoatarefa = new PessoaTarefa([
+        //         'pessoa_id' => $pessoa->id,
+        //         'tarefa_id' => $tarefa_id
+        //     ]);
+        //     $pessoatarefa->save();
+        // }
+        
+        $pessoa->tarefas()->attach($request->tarefas_id);
+        
 
 
         return view('pessoas/pessoasStore', compact('tarefas'));

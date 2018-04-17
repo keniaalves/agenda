@@ -46,7 +46,7 @@
                             <div class="col-md-6">
                                 <input id="data" type="date" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" name="data" value="{{ $tarefas->data }}"required>
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('data'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('data') }}</strong>
                                     </span>
@@ -54,11 +54,20 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                        <label for="pessoa" class="col-md-4 col-form-label text-md-right">{{ __('Pessoa') }}</label>
+                        <div class="form-group row"> 
+                            <div class="col-md-10"></div>
 
+                                <a class="btn btn-primary" href="javascript:void(0)" id="addInput">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    +
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="dynamicDiv">
+                        <label for="pessoa" class="col-md-4 col-form-label text-md-right">{{ __('Pessoa') }}</label>
                             <div class="col-md-6">
-                                <select class="form-control" id="exampleFormControlSelect1" name="pessoa">
+                                <select class="form-control" id="inputeste" name="pessoas_id">
                                     @forelse($pessoas as $pessoas)
                                     <option value='{{$pessoas->id}}'>{{ $pessoas->id}} - {{ $pessoas->nome}}</option>
                                     @empty
@@ -66,7 +75,26 @@
                                     @endforelse
                                 </select>
                             </div>
+                            <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                -
+                            </a>
                         </div>
+
+                        <script>
+                            $(function () {
+                                var teste = $('#dynamicDiv').html();
+                                
+                                $(document).on('click', '#addInput', function () {
+                                    $(teste).appendTo(dynamicDiv);
+                                    return false;
+                                });
+                                $(document).on('click', '#remInput', function () {
+                                    $(this).parents('#dynamicDiv').remove(teste);
+                                    return false;
+                                });
+                            });
+                        </script>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

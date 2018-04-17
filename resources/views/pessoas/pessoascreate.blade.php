@@ -57,10 +57,10 @@
                         <label for="tarefa" class="col-md-4 col-form-label text-md-right">{{ __('Tarefa') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="id" name="id" multiple data-actions-box="true">
+                                <select class="form-control" id="tarefas_id" name="tarefas_id[]" multiple data-actions-box="true">
                                     <option disabled>Selecione</option>
-                                    @forelse($tarefas as $tarefas)
-                                    <option>{{ $tarefas->id}} - {{ $tarefas->descricao}}</option>
+                                    @forelse($tarefas as $tarefa)
+                                    <option value='{{ $tarefa->id }}'>{{ $tarefa->id}} - {{ $tarefa->descricao}}</option>
                                     @empty
                                     <option>Sem tarefas ainda.</option>
                                     @endforelse
