@@ -21,6 +21,7 @@ class CreatePessoaTarefaTable extends Migration
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
             $table->foreign('tarefa_id')->references('id')->on('tarefas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -59,7 +59,7 @@
                             <div class="col-md-6 boxes">
                             @forelse($pessoas as $pessoas)
                                 <label class="checkbox">  
-                                    <input type="checkbox" name="pessoas_id" value='{{$pessoas->id}}'>
+                                    <input type="checkbox" name="pessoas_id[]" value='{{$pessoas->id}}'>
                                         {{ $pessoas->id}} - {{ $pessoas->nome}}
                                 </label> </br>       
                                 @empty

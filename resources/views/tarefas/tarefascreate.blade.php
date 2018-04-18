@@ -45,7 +45,7 @@
                             <div class="col-md-6">
                                 <input id="data" type="date" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" name="data" required>
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('data'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('data') }}</strong>
                                     </span>
@@ -58,7 +58,7 @@
                             <div class="col-md-6 boxes">
                             @forelse($pessoas as $pessoas)
                                 <label class="checkbox">  
-                                    <input type="checkbox" name="pessoas_id" value='{{$pessoas->id}}'>
+                                    <input type="checkbox" name="pessoas_id[]" value='{{$pessoas->id}}'>
                                         {{ $pessoas->id}} - {{ $pessoas->nome}}
                                 </label></br> 
                                 @empty

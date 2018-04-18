@@ -19,6 +19,7 @@ class CreatePessoasTable extends Migration
             $table->date('aniversario');
             $table->string('telefone');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

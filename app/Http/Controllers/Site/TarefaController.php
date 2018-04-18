@@ -60,7 +60,7 @@ class TarefaController extends Controller
 
         $tarefa->save();
 
-        $tarefa->pessoas()->attach($request->pessoas_id);
+        $tarefa->pessoas()->sync($request->pessoas_id);
         
         return view('tarefas/tarefasUpdate');
     }

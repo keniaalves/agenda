@@ -89,7 +89,7 @@ class PessoaController extends Controller
 
         $pessoa->save();
 
-        $pessoa->tarefas()->attach($request->tarefas_id);
+        $pessoa->tarefas()->sync($request->tarefas_id);
         
         return view('pessoas/pessoasUpdate');
     }

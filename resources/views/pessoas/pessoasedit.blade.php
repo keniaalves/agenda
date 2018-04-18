@@ -58,9 +58,10 @@
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Tarefas') }}</label>
                             <div class="col-md-6 boxes">
                             @forelse($tarefas as $tarefas)
+                            {{ $pessoas->tarefas_id}}
                                 <label class="checkbox">  
-                                    <input type="checkbox" name="tarefas_id" value='{{$tarefas->id}}'>
-                                        {{ $tarefas->id}} - {{ $tarefas->descricao}}
+                                    <input type="checkbox" name="tarefas_id[]" value='{{$tarefas->id}}'>
+                                        {{ $tarefas->id}} - {{ $tarefas->titulo}}
                                     </label></br>
                                     @empty
                                     <p>Sem tarefas</p>

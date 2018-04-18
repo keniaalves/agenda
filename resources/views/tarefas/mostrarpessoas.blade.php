@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tarefa {{ $tarefas->id}}</div>
+                <div class="card-header">Tarefa: {{ $tarefas->id}} - {{ $tarefas->descricao}}</div>
 
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item"><strong>Pessoas envolvidas na tarefa</strong></li>
+                        <li class="list-group-item"><strong>Pessoas envolvidas na tarefa {{ $tarefas->id}}</strong></li>
                         @forelse($pessoas as $pessoas)
                         <li class="list-group-item"><strong>ID Pessoa: </strong>{{ $pessoas->id}} - <strong>Nome Pessoa:</strong> {{ $pessoas->nome}}</li>
                         @empty

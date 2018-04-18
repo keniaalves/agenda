@@ -19,6 +19,7 @@ class CreateTarefasTable extends Migration
             $table->string('descricao');
             $table->dateTime('data');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
