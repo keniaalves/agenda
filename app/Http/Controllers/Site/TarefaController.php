@@ -33,7 +33,9 @@ class TarefaController extends Controller
 
     public function show(Request $request, $id)
     {
-        return view('tarefas/tarefasShow',['tarefas' => Tarefa::findOrFail($id)]);
+        $tarefas = Tarefa::findOrFail($id);
+
+        return view('tarefas/tarefasShow', compact('tarefas'));
     }
 
     public function delete($id)
@@ -50,11 +52,15 @@ class TarefaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $tarefa = Tarefa::find($request->all());
+        $tarefa = Tarefa::find($id);
 
-        $tarefa->pessoas()->attach($request->pessoa);
+        $tarefa->titulo    = $request->titulo;
+        $tarefa->descricao = $request->descricao;
+        $tarefa->data      = $request->data;
 
         $tarefa->save();
+
+        $tarefa->pessoas()->attach($request->pessoas_id);
         
         return view('tarefas/tarefasUpdate');
     }

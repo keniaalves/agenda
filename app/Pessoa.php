@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pessoa extends Model
 {
+    use SoftDeletes; 
+
     public $fillable = 
     [
         'nome',
@@ -18,6 +21,11 @@ class Pessoa extends Model
         'id', 
         'created_at', 
         'update_at'
+    ];
+
+    protected $dates = 
+    [
+        'deleted_at'
     ];
 
     public $table = 'pessoas'; 
