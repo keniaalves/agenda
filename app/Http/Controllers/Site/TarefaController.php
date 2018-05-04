@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Notifications\NovaTarefaUsuario;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Pessoa;
 use App\Tarefa;
@@ -27,6 +29,9 @@ class TarefaController extends Controller
         $tarefa->save();
 
         $tarefa->pessoas()->attach($request->pessoas_id);
+
+        $user = Auth::user();
+        $user->notify(new NovaTarefaUsuario());  
 
         return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
     }
