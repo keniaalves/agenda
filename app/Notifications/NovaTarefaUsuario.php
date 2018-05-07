@@ -33,7 +33,7 @@ class NovaTarefaUsuario extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','broadcast'];
+        return ['database','broadcast','mail'];
     }
 
     /**
@@ -45,9 +45,10 @@ class NovaTarefaUsuario extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('Oiê!')
+                    ->line('Novas tarefas te esperam na sua Agenda')
+                    ->action('Para mais detalhes, acesse', url('http://agenda.test/'))
+                    ->line('Tenha um ótimo dia! :)');
     }
 
     public function toDatabase($notifiable)
