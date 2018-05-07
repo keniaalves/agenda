@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class NovaTarefaUsuario extends Notification
 {

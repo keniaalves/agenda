@@ -76,17 +76,18 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Notification Link -->
-                        <li class="nav-link"><i class="fas fa-bell"> {{count(auth()->user()->notifications)}}</i></li> 
-                        <li id="app" class="nav-link">Evento</li> 
+
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Cadastre-se') }}</a></li>
                         @else
+                        <!-- Notification Link -->
+         
+                            <li class="nav-link"><i class="fas fa-bell"> {{count(auth()->user()->unreadNotifications)}}</i></li> 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fas fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre type="button">
+                                   {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

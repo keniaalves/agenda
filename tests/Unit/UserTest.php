@@ -1,13 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
-use App\Pessoa as Pessoa;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PessoaTest extends TestCase
+class UserTest extends TestCase
 {
     /**
      * A basic test example.

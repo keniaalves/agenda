@@ -33,22 +33,3 @@ Route::group(['namespace'=>'Site', 'middleware'=>'auth'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-class Nova{
-    public $id;
-
-    public function __contruct($id){
-        $this->id = $id;
-    }
-}
-// Route::get('/', function(){
-//     event(new NovaTarefaUsuario());
-// });
-
-Route::get('/', function(){
-    NovaTarefaUsuario::dispatch(new Nova('1'));
-});
-
-Route::get('/listener', function(){
-    return view('test');
-});
