@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use App\Mail\NovaTarefa;
 
 class NovaTarefaUsuario extends Notification
 {
@@ -45,10 +46,8 @@ class NovaTarefaUsuario extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Oiê!')
-                    ->line('Novas tarefas te esperam na sua Agenda')
-                    ->action('Para mais detalhes, acesse', url('http://agenda.test/'))
-                    ->line('Tenha um ótimo dia! :)');
+                    ->subject('Testing')
+                    ->markdown('emails.notification-tarefa');
     }
 
     public function toDatabase($notifiable)

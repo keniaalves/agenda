@@ -7,6 +7,7 @@ use App\Tarefa;
 use App\PessoaTarefa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class PessoaController extends Controller
 {
@@ -18,7 +19,13 @@ class PessoaController extends Controller
     public function index()
     {
         $pessoas = Pessoa::all();
+
         return view('pessoas/pessoasList', compact('pessoas'));
+    }
+
+    public function getAll(){
+        $dadosPessoas = Pessoas::query();
+        return DataTables::of($dadosPessoas)->make(true);
     }
 
     /**
