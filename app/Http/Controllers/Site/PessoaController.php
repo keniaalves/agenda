@@ -23,8 +23,8 @@ class PessoaController extends Controller
         return view('pessoas/pessoasList', compact('pessoas'));
     }
 
-    public function getAll(){
-        $dadosPessoas = Pessoas::query();
+    public function getData(){
+        $dadosPessoas = Pessoa::query();
         return DataTables::of($dadosPessoas)->make(true);
     }
 
@@ -109,7 +109,14 @@ class PessoaController extends Controller
      */
     public function delete($id)
     {
-        return view('pessoas/pessoasDelete',['pessoas' => Pessoa::findOrFail($id)->delete($id)]);
+        try {
+            Pessoa::findOrFail($id)->delete();
+            // return redirect()->back();
+            return ['type' => 'success',  'message' => 'Tudo certo'];
+        } 
+        catch(\Exception $e){
+            return ['type' => 'error',  'message' => $e->getMessage()]; 
+        }
     }
 
     public function mostrarTarefas($id){

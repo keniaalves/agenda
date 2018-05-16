@@ -1,53 +1,40 @@
 @extends('layouts.app')
-
+@section('style')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Seus Contatos</div>
-
                 <div class="card-body">
-                @forelse($pessoas as $pessoas)
                     <table class="table" id="table1">
-                    <thead>
-                        <tr>
-                            <th>Contato</th>
-                            <th>Telefone</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ $pessoas->nome}}</td>
-                            <td>{{ $pessoas->telefone}}</td>
-                            <td>
-                            <div class="btn-group" role="group">
-                                <a type="button" class="btn btn-primary" href="{{ route('pessoas/pessoasShow', $pessoas) }}">Ver</a>
-                                <a type="button" class="btn btn-info" href="{{ route('pessoas/pessoasEdit', $pessoas->id) }}">Editar</a>
-                                <form action="{{ route('pessoas/pessoasDelete', $pessoas->id) }}" method="POST">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-danger">Deletar</button>
-                                    </div>
-                                </form>
-                            </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                    @empty
-                    <div class="alert alert-danger">
-                        <p>Nothing to say... </p>
-                    </div>
-                @endforelse
-            </table>
+                        <thead>
+                            <tr>
+                                <th>Contato</th>
+                                <th>Telefone</th>
+                                <th>Acao</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
 @section('scripts')
-<script src="/js/pessoaslist.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/vendor/sweetalert2/sweetalert2.all.js"></script>
+<script type="text/javascript" src="/js/pessoaslist.js"></script>
+
+<script type="text/javascript">
+    const routeListaPessoas = "{{ route('pessoas/getData') }}";
+    const routeShowPessoas = "{{ route('pessoas/pessoasShow', '/') }}";
+    const routeEditaPessoas = "{{ route('pessoas/pessoasEdit', '/') }}";
+    const routeDeletaPessoas = "{{ route('pessoas/pessoasDelete', '/') }}";
+</script>
 @endsection

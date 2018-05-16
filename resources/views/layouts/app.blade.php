@@ -10,8 +10,6 @@
 
     <title>{{ config('app.name', 'Agenda') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -20,9 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <script src="js/app.js"></script>
 
     <style>
         .boxes {
@@ -42,6 +37,7 @@
                 font-size: 84px;
             }
     </style>
+    @yield('style')
 </head>
 <body>
     <div id="app">
@@ -112,6 +108,8 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="/js/app.js"></script> -->
     @yield('scripts')
 </body>
 </html>

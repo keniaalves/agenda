@@ -19,7 +19,7 @@ Route::group(['namespace'=>'Site', 'middleware'=>'auth'], function () {
 
     
     Route::get('pessoasList', 'PessoaController@index')->name('pessoas/pessoasList');
-    Route::get('pessoasGetData', 'PessoaController@getData')->name('pessoas/pessoasGetData');
+    Route::get('getData', 'PessoaController@getData')->name('pessoas/getData');
     Route::get('pessoasCreate', 'PessoaController@create')->name('pessoas/pessoasCreate');
     Route::post('pessoasStore', 'PessoaController@store')->name('pessoas/pessoasStore');
     Route::get('pessoasShow/{id}', 'PessoaController@show')->name('pessoas/pessoasShow');
