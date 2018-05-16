@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style')
+<link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css" />
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -43,7 +45,7 @@
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data') }}</label>
 
                             <div class="col-md-6">
-                                <input id="data" type="date" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" name="data" required>
+                                <input id="data" type="text" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" name="data" required>
 
                                 @if ($errors->has('data'))
                                     <span class="invalid-feedback">
@@ -80,4 +82,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+
+<script type="text/javascript" src="/vendor/daterangepicker/moment.js"></script>
+<script type="text/javascript" src="/vendor/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/js/create.js"></script>
+
 @endsection
