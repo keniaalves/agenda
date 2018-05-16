@@ -8,6 +8,7 @@ Route::get('/', function () {
 
 Route::group(['namespace'=>'Site', 'middleware'=>'auth'], function () {
     Route::get('tarefasList', 'TarefaController@index')->name('tarefas/tarefasList');
+    Route::get('tarefagetData', 'TarefaController@getData')->name('tarefas/getData');
     Route::get('tarefasCreate', 'TarefaController@create')->name('tarefas/tarefasCreate');
     Route::post('tarefasStore', 'TarefaController@store')->name('tarefas/tarefasStore');
     Route::get('tarefasShow/{id}', 'TarefaController@show')->name('tarefas/tarefasShow');
@@ -19,7 +20,7 @@ Route::group(['namespace'=>'Site', 'middleware'=>'auth'], function () {
 
     
     Route::get('pessoasList', 'PessoaController@index')->name('pessoas/pessoasList');
-    Route::get('getData', 'PessoaController@getData')->name('pessoas/getData');
+    Route::get('pessoagetData', 'PessoaController@getData')->name('pessoas/getData');
     Route::get('pessoasCreate', 'PessoaController@create')->name('pessoas/pessoasCreate');
     Route::post('pessoasStore', 'PessoaController@store')->name('pessoas/pessoasStore');
     Route::get('pessoasShow/{id}', 'PessoaController@show')->name('pessoas/pessoasShow');

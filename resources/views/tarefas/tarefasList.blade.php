@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,37 +10,33 @@
                 <div class="card-header">Suas Tarefas</div>
                 
                 <div class="card-body">
-                @forelse($tarefas as $tarefas)
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="row">
-                            
-                            <div class="col-md-8">
-                                {{ $tarefas->titulo}} - {{ $tarefas->data}}
-                            </div>
-
-                            <div class="col-md-4">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-primary" href="{{ route('tarefas/tarefasShow', $tarefas->id) }}">Ver</a>
-                                <a class="btn btn-info" href="{{ route('tarefas/tarefasEdit', $tarefas->id) }}">Editar</a>
-                                <form action="{{ route('tarefas/tarefasDelete', $tarefas->id) }}" method="POST">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn btn-danger">Deletar</button>
-                                </form>
-                            </div>
-                            </div>
-                        </li>
-                    </ul>
-                    @empty
-                    <div class="alert alert-danger">
-                        <p>Nothing to say... </p>
-                    </div>
-                @endforelse
+                <table class="table" id="table2">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Acao</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/vendor/sweetalert2/sweetalert2.all.js"></script>
+<script type="text/javascript" src="/js/tarefaslist.js"></script>
+
+<script type="text/javascript">
+    const routeListaTarefas = "{{ route('tarefas/getData') }}";
+    const routeShowTarefas = "{{ route('tarefas/tarefasShow', '/') }}";
+    const routeEditaTarefas = "{{ route('tarefas/tarefasEdit', '/') }}";
+    const routeDeletaTarefas = "{{ route('tarefas/tarefasDelete', '/') }}";
+</script>
 @endsection

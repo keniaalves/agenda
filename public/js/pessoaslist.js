@@ -14,8 +14,8 @@ $(document).ready( function () {
 				var data = result.data;
                 for (var row in data) {
                     data[row].botoes = "<div class='btn-group' role='group' aria-label='Basic example'>\
-                                <a class='btn btn-primary' href='" + routeShowPessoas + data[row].id + "'>Ver</a>\
-                                <a class='btn btn-info' href='" + routeEditaPessoas + data[row].id + "'>Editar</a>\
+                                <a class='btn btn-primary' href='" + routeShowPessoas + '/' + data[row].id + "'>Ver</a>\
+                                <a class='btn btn-info' href='" + routeEditaPessoas + '/' + data[row].id + "'>Editar</a>\
                                 <button id='delete' class='btn btn-danger' data-delete='" + data[row].id + "'>Deletar</button>\
                                     </div>";
                 }

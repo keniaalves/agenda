@@ -111,7 +111,6 @@ class PessoaController extends Controller
     {
         try {
             Pessoa::findOrFail($id)->delete();
-            // return redirect()->back();
             return ['type' => 'success',  'message' => 'Tudo certo'];
         } 
         catch(\Exception $e){

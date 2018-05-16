@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Notifications\NovaTarefaUsuario;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Pessoa;
@@ -15,6 +16,11 @@ class TarefaController extends Controller
     {
         $tarefas = Tarefa::all();
         return view('tarefas/tarefasList', compact('tarefas'));
+    }
+
+    public function getData(){
+        $dadosTarefas = Tarefa::query();
+        return DataTables::of($dadosTarefas)->make(true);
     }
 
     public function create()
@@ -45,7 +51,14 @@ class TarefaController extends Controller
 
     public function delete($id)
     {
-        return view('tarefas/tarefasDelete',['tarefas' => Tarefa::findOrFail($id)->delete($id)]);
+        try{
+            Tarefa::findOrFail($id)->delete();
+            return ['type' => 'success',  'message' => 'Tudo certo'];
+        }
+        catch(\Exception $e){
+            return ['type' => 'error',  'message' => $e->getMessage()];
+        }
+
     }
 
     public function edit($id)

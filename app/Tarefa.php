@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tarefa extends Model
 {
+    use SoftDeletes; 
+    
     public $fillable = 
     [
         'titulo',
