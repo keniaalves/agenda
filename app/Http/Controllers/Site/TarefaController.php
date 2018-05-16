@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Pessoa;
 use App\Tarefa;
 
@@ -18,8 +19,19 @@ class TarefaController extends Controller
         return view('tarefas/tarefasList', compact('tarefas'));
     }
 
-    public function getData(){
+    public function getData(Request $request){
         $dadosTarefas = Tarefa::query();
+        
+        if($request->periodo){
+            $dadosTarefas->whereMonth('data',$request->periodo);
+        }
+        if($request->quantidadepessoas){
+            $dadosTarefas
+            ->select(DB::raw('count(pessoa_id) as conte'),'titulo', 'descricao', 'tarefa_id', 'pessoa_tarefa.id', 'data')
+            ->join('pessoa_tarefa','pessoa_tarefa.tarefa_id', '=', 'tarefas.id')
+            ->groupBy('tarefa_id')
+            ->having('conte', '=>', $request->quantidadepessoas);
+        }
         return DataTables::of($dadosTarefas)->make(true);
     }
 

@@ -10,18 +10,22 @@
                 <div class="card-header">Suas Tarefas</div>
                 
                 <div class="card-body">
-                <table class="table" id="table2">
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Descrição</th>
-                            <th>Data</th>
-                            <th>Acao</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                    <label>Período</label>
+                    <input type="number" name="periodo" class="form-control">
+                    <label>Quantidade de pessoas</label>
+                    <input type="number" name="quantidadepessoas" class="form-control">
+                    <table class="table" id="table2">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Descrição</th>
+                                <th>Data</th>
+                                <th>Acao</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

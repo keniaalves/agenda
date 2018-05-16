@@ -10,6 +10,10 @@ $(document).ready( function () {
         ajax: {
             method: "GET",
             url: routeListaTarefas,
+            data: function(params){
+                params.periodo = $('input[name="periodo"]').val();
+                params.quantidadepessoas = $('input[name="quantidadepessoas"]').val();
+            },
             dataSrc: function(result) {
 				var data = result.data;
                 for (var row in data) {
@@ -29,6 +33,13 @@ $(document).ready( function () {
             {data: 'botoes', name: null, searchable: false, orderable: false }
         ]
     });
+
+    $('input[name="periodo"]').on('input', function(){
+        datatable.draw();
+    })
+    $('input[name="quantidadepessoas"]').on('input', function(){
+        datatable.draw();
+    })
 
     $('#table2').on('click', '#delete', function() {
         var id = $(this).attr('data-delete');
