@@ -45,7 +45,7 @@
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data') }}</label>
 
                             <div class="col-md-6">
-                                <input id="data" type="text" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" name="data" value='{{$tarefa->data}} - {{$tarefa->data_final}}' required>
+                                <input id="data" type="text" class="form-control{{ $errors->has('data') ? ' is-invalid' : '' }}" name="data" required>
 
                                 @if ($errors->has('data'))
                                     <span class="invalid-feedback">

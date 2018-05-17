@@ -6,6 +6,7 @@ use App\Pessoa;
 use App\Tarefa;
 use App\PessoaTarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -48,6 +49,8 @@ class PessoaController extends Controller
     public function store(Request $request)
     {
         $pessoa = new Pessoa($request->all());
+        $data = Carbon::createFromFormat('m/d/Y',$pessoa->aniversario);
+        $pessoa->aniversario = $data;
         $pessoa->save();
         
         $pessoa->tarefas()->attach($request->tarefas_id);

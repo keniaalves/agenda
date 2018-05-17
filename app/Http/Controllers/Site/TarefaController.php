@@ -6,6 +6,7 @@ use App\Notifications\NovaTarefaUsuario;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Pessoa;
@@ -44,6 +45,8 @@ class TarefaController extends Controller
     public function store(Request $request)
     {
         $tarefa = new Tarefa($request->all());
+        $data = Carbon::createFromFormat('m/d/Y',$tarefa->data);
+        $tarefa->data = $data;
         $tarefa->save();
 
         $tarefa->pessoas()->attach($request->pessoas_id);
