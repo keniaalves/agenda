@@ -17,6 +17,7 @@
                     <table class="table" id="table2">
                         <thead>
                             <tr>
+                                <th>id</th>
                                 <th>Título</th>
                                 <th>Descrição</th>
                                 <th>Data</th>

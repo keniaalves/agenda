@@ -27,6 +27,7 @@ $(document).ready( function () {
             }
         }, 
         columns: [
+            {data: 'id'},
             {data: 'titulo'},
             {data: 'descricao'},
             {data: 'data'},
