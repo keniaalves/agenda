@@ -9,4 +9,6 @@ $(document).ready( function (){
         // seconds: true,
         //format: 'MM-DD-YYYY hh:mm:ss',
     });
+
+    $("#telefone").validate();
 });

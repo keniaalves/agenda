@@ -45,7 +45,7 @@
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" name="telefone" required>
+                                <input id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" minlenght="4" name="telefone" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -88,5 +88,6 @@
 <script type="text/javascript" src="/vendor/daterangepicker/moment.js"></script>
 <script type="text/javascript" src="/vendor/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="/js/create.js"></script>
+<script src="/vendor/validatejs/validate.js"></script>
 
 @endsection
