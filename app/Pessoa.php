@@ -13,7 +13,8 @@ class Pessoa extends Model
     [
         'nome',
         'aniversario',
-        'telefone'
+        'telefone',
+        'email'
     ];
     
     public $guarded = 

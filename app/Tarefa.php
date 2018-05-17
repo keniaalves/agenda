@@ -13,7 +13,8 @@ class Tarefa extends Model
     [
         'titulo',
         'descricao',
-        'data'
+        'data',
+        'email'
     ];
 
     public $guarded = 
@@ -33,4 +34,5 @@ class Tarefa extends Model
     public function pessoas(){
         return $this->belongsToMany(Pessoa::class);
     }
+    
 }

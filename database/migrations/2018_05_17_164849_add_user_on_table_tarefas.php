@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDataFinalOnTableTarefas extends Migration
+class AddUserOnTableTarefas extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDataFinalOnTableTarefas extends Migration
     public function up()
     {
         Schema::table('tarefas', function (Blueprint $table) {
-            $table->dateTime('data_final')->nullable();
+            $table->unsignedInteger('user_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddDataFinalOnTableTarefas extends Migration
     public function down()
     {
         Schema::table('tarefas', function (Blueprint $table) {
-            $table->dropColumn('data_final');
+            $table->dropColumn('user_id');
         });
     }
 }

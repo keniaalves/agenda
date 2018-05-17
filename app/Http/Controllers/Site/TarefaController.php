@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\NotificacaoTarefaEmail;
+use App\Exceptions\Handler;
 use App\Pessoa;
 use App\Tarefa;
 
@@ -45,17 +47,26 @@ class TarefaController extends Controller
 
     public function store(Request $request)
     {
-        $tarefa = new Tarefa($request->all());
-        $data = Carbon::createFromFormat('m/d/Y',$tarefa->data);
-        $tarefa->data = $data;
-        $tarefa->save();
+        try{
+            $tarefa = new Tarefa($request->all());
+            $tarefa->data = Carbon::createFromFormat('m/d/Y',$tarefa->data);
+            $tarefa->save();
 
-        $tarefa->pessoas()->attach($request->pessoas_id);
+            $tarefa->pessoas()->attach($request->pessoas_id);
 
-        $user = Auth::user();
-        $user->notify(new NovaTarefaUsuario());  
+            $user = Auth::user();
+            //$user->notify(new NovaTarefaUsuario());  
+            
+            // $this->dispatch(new NotificacaoTarefaEmail($tarefa))->delay(60);
 
-        return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
+            $job = (new NotificacaoTarefaEmail($tarefa))->onQueue('teste')->delay($tarefa->data);
+            $this->dispatch($job);
+            
+            return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
+        } catch(\Exception $e) {
+            dd($e->getMessage().'<br>'.$e->getFile().'<br>'.$e->getLine());
+        }
+
     }
 
     public function show(Request $request, $id)

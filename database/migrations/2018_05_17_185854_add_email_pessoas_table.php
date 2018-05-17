@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyTypeColumnDataTableTarefas extends Migration
+class AddEmailPessoasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class ModifyTypeColumnDataTableTarefas extends Migration
      */
     public function up()
     {
-        Schema::table('tarefas', function (Blueprint $table) {
-            $table->date('data_final')->nullable()->change();
+        Schema::table('pessoas', function (Blueprint $table) {
+            $table->string('email')->unique();
         });
     }
 
@@ -25,8 +25,8 @@ class ModifyTypeColumnDataTableTarefas extends Migration
      */
     public function down()
     {
-        Schema::table('tarefas', function (Blueprint $table) {
-            $table->dateTime('data_final')->change();
+        Schema::table('pessoas', function (Blueprint $table) {
+            $table->dropColumn('email');
         });
     }
 }
