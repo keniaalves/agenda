@@ -42,6 +42,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="comentario" class="col-md-4 col-form-label text-md-right">{{ __('Comentario') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="comentario" type="text" class="form-control{{ $errors->has('comentario') ? ' is-invalid' : '' }}" name="comentario" value="{{ old('comentario') }}" required>
+
+                                @if ($errors->has('comentario'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('comentario') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data') }}</label>
 
                             <div class="col-md-6">

@@ -36,7 +36,7 @@ class NotificacaoTarefaEmail implements ShouldQueue
         // if ($this->tarefa->data = Carbon->now()){
             $pessoas = $this->tarefa->pessoas;
             foreach($pessoas as $pessoa){
-                \Notification::route('email', $pessoa->email)
+                \Notification::route('mail', $pessoa->email)
                     ->notify( new NotificaTarefa()); 
             }
         // }
