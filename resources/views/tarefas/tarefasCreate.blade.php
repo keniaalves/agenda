@@ -87,6 +87,7 @@
 
 <script type="text/javascript" src="/vendor/daterangepicker/moment.js"></script>
 <script type="text/javascript" src="/vendor/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/vendor/validatejs/validate.js"></script>
 <script type="text/javascript" src="/js/create.js"></script>
 
 @endsection
