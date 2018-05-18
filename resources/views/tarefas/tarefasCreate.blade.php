@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('Nova tarefa') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('tarefas/tarefasStore') }}">
+                    <form method="POST"  id="formTarefa" action="{{ route('tarefas/tarefasStore') }}">
                         @csrf
 
                         <div class="form-group row">
