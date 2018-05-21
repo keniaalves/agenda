@@ -54,8 +54,8 @@ class TarefaController extends Controller
 
             $tarefa->pessoas()->attach($request->pessoas_id);
 
-            //$user = Auth::user();
-            //$user->notify(new NovaTarefaUsuario());  
+            $user = Auth::user();
+            $user->notify(new NovaTarefaUsuario());  
             
             // $this->dispatch(new NotificacaoTarefaEmail($tarefa))->delay(60);
 

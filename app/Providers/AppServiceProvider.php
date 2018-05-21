@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Carbon::serializeUsing(function ($carbon) {
             $carbon->setLocale('pt_BR');
+        });
+
+        Queue::after(function (JobProcessed $event) {
+            
         });
     }
 

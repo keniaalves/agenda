@@ -14,7 +14,7 @@ class AddComentarioOnTarefas extends Migration
     public function up()
     {
         Schema::table('tarefas', function (Blueprint $table) {
-            $table->string('comentario')->nullable;
+            $table->string('comentario')->nullable();
         });
     }
 

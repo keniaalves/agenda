@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddComentarioOnTarefas extends Migration
+class AddUserIdOnTablePessoas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddComentarioOnTarefas extends Migration
      */
     public function up()
     {
-        Schema::table('tarefas', function (Blueprint $table) {
-            //
+        Schema::table('pessoas', function (Blueprint $table) {
+            $table->integer('user_id')->nullable()->unsigned();
         });
     }
 
@@ -25,8 +25,8 @@ class AddComentarioOnTarefas extends Migration
      */
     public function down()
     {
-        Schema::table('tarefas', function (Blueprint $table) {
-            //
+        Schema::table('pessoas', function (Blueprint $table) {
+            $table->dropColumn('user_id');
         });
     }
 }
