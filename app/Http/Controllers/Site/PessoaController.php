@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\User;
 use App\Pessoa;
 use App\Tarefa;
 use App\PessoaTarefa;
+use App\Jobs\ConvidaPessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
@@ -48,14 +50,25 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-        $pessoa = new Pessoa($request->all());
-        $data = Carbon::createFromFormat('m/d/Y',$pessoa->aniversario);
-        $pessoa->aniversario = $data;
-        $pessoa->save();
-        
-        $pessoa->tarefas()->attach($request->tarefas_id);
-        
-        return view('pessoas/pessoasStore', compact('tarefas'));
+        try{
+            $pessoa = new Pessoa($request->all());
+            $data = Carbon::createFromFormat('m/d/Y',$pessoa->aniversario);
+            $pessoa->aniversario = $data;
+            $pessoa->save();
+            
+            $pessoa->tarefas()->attach($request->tarefas_id);
+
+            $user = User::where('users.email', '=', $request->email)->get();
+
+            if(!$user->all()){
+                $job = (new ConvidaPessoa($pessoa))->onQueue('convida');
+                $this->dispatch($job);
+            }
+            return view('pessoas/pessoasStore', compact('tarefas'));
+
+        }catch(Exception $e){
+            dd($e->getMessage().'<br>'.$e->getFile().'<br>'.$e->getLine());
+        }
     }
 
     /**

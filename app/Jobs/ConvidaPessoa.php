@@ -2,28 +2,28 @@
 
 namespace App\Jobs;
 
-use App\Tarefa;
-use Illuminate\Notifications\Notification;
-use App\Notifications\NotificaTarefa; 
+use App\Pessoa;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
+use App\Notifications\NotificaConvidaPessoa; 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class NotificacaoTarefaEmail implements ShouldQueue 
+class ConvidaPessoa implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $tarefa;
+    public $pessoa;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Tarefa $tarefa)
+    public function __construct(Pessoa $pessoa)
     {
-        $this->tarefa = $tarefa;
+        $this->pessoa = $pessoa;
     }
 
     /**
@@ -33,10 +33,7 @@ class NotificacaoTarefaEmail implements ShouldQueue
      */
     public function handle()
     {
-        $pessoas = $this->tarefa->pessoas;
-        foreach($pessoas as $pessoa){
-            \Notification::route('mail', $pessoa->email)
-                ->notify( new NotificaTarefa()); 
-        }
+        \Notification::route('mail', $this->pessoa->email)
+            ->notify( new NotificaConvidaPessoa()); 
     }
 }

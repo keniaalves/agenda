@@ -5,7 +5,7 @@ $(document).ready( function () {
         }
     });
 
-        var datatable = $('#table2').DataTable({
+    var datatable = $('#table2').DataTable({
         serverSide: true,
         ajax: {
             method: "GET",
@@ -26,6 +26,11 @@ $(document).ready( function () {
                 return data;
             }
         }, 
+
+        drawCallback: function(){
+            // $('[data-toggle="tooltip"]').tooltip();
+        },
+
         columns: [
             {data: 'id'},
             {data: 'titulo'},
@@ -34,6 +39,26 @@ $(document).ready( function () {
             {data: 'botoes', name: null, searchable: false, orderable: false }
         ]
     });
+
+    $('#table2 tbody').on('mouseenter', 'tr', function(){
+        var linha = datatable.row(this).data();
+        // var alerta = swal.mixin({
+        //     toast: true,
+        //     position: 'top-end',
+        //     showConfirmButton: false,
+        //     timer: 1000
+        // });
+        // alerta({
+        //     title: linha.comentario 
+        // })
+
+        $(this).attr('title', linha.comentario);
+        $(this).attr('data-toggle', 'tooltip');
+
+        console.log(this);
+
+        $('[data-toggle="tooltip"]').tooltip();
+    })
 
     $('input[name="periodo"]').on('input', function(){
         datatable.draw();
@@ -72,6 +97,7 @@ $(document).ready( function () {
                     }
                 });
             }
-          })
+        })
     });
+
 } );

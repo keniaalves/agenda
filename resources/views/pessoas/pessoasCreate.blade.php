@@ -47,9 +47,23 @@
                             <div class="col-md-6">
                                 <input id="telefone" type="text" class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" minlength="4" name="telefone" required>
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('telefone'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('E-mail') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" minlength="4" name="email" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>

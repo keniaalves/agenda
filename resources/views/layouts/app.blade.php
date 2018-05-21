@@ -109,7 +109,8 @@
         </main>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- <script src="/js/app.js"></script> -->
+    <script src="/vendor/bootstrap4/popper.js"></script>
+    <script src="/vendor/bootstrap4/tooltip.js"></script>
     @yield('scripts')
 </body>
 </html>
