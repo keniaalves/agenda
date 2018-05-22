@@ -16,8 +16,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\NovaTarefaUsuario::class' => [
-            'App\Listeners\NotificacaoUsuario::class',
+        'App\Events\NovaTarefaUsuario' => [
+            'App\Listeners\NotificacaoUsuario',
         ],
     ];
 

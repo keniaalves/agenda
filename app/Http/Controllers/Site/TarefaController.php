@@ -64,7 +64,7 @@ class TarefaController extends Controller
             $job = (new NotificacaoTarefaEmail($tarefa))->onQueue('teste')->delay($tarefa->data);
             $this->dispatch($job);
             
-            event(new NewTarefaUsuario());
+            event(new NewTarefaUsuario($tarefa));
             return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
         } catch(\Exception $e) {
             dd($e->getMessage().'<br>'.$e->getFile().'<br>'.$e->getLine());

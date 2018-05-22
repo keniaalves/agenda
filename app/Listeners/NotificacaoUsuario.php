@@ -29,6 +29,5 @@ class NotificacaoUsuario
         $tarefa = $event->tarefa;
         $tarefa->comentario = 'testando evento';
         $tarefa->save();
-        //$event = new NovaTarefaUsuario(); EU ACHO
     }
 }
