@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
+use App\Listeners\NotificacaoUsuario;
+use App\Events\NovaTarefaUsuario;
+
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,8 +16,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'App\Events\NovaTarefaUsuario::class' => [
+            'App\Listeners\NotificacaoUsuario::class',
         ],
     ];
 

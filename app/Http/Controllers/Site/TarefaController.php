@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Notifications\NovaTarefaUsuario;
+use App\Events\NovaTarefaUsuario as NewTarefaUsuario;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -50,11 +51,12 @@ class TarefaController extends Controller
         try{
             $tarefa = new Tarefa($request->all());
             $tarefa->data = Carbon::createFromFormat('m/d/Y',$tarefa->data);
+            $user = Auth::user();
+            $tarefa->user_id = Auth::id();
             $tarefa->save();
 
             $tarefa->pessoas()->attach($request->pessoas_id);
-
-            $user = Auth::user();
+            
             $user->notify(new NovaTarefaUsuario());  
             
             // $this->dispatch(new NotificacaoTarefaEmail($tarefa))->delay(60);
@@ -62,6 +64,7 @@ class TarefaController extends Controller
             $job = (new NotificacaoTarefaEmail($tarefa))->onQueue('teste')->delay($tarefa->data);
             $this->dispatch($job);
             
+            event(new NewTarefaUsuario());
             return view('tarefas/tarefasStore', compact('pessoas', 'tarefas'));
         } catch(\Exception $e) {
             dd($e->getMessage().'<br>'.$e->getFile().'<br>'.$e->getLine());

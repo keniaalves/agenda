@@ -26,6 +26,9 @@ class NotificacaoUsuario
      */
     public function handle(NovaTarefaUsuario $event)
     {
+        $tarefa = $event->tarefa;
+        $tarefa->comentario = 'testando evento';
+        $tarefa->save();
         //$event = new NovaTarefaUsuario(); EU ACHO
     }
 }

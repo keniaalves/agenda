@@ -14,15 +14,15 @@ class NovaTarefaUsuario implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $nova;
+    public $tarefa;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($nova)
+    public function __construct($tarefa)
     {
-        $this->nova = $nova;
+        $this->tarefa = $tarefa;
     }
 
     /**
@@ -33,6 +33,6 @@ class NovaTarefaUsuario implements ShouldBroadcast
     public function broadcastOn()
     {
         //return new PrivateChannel('channel-name');
-        return new Channel('nova');
+        return new Channel('tarefa');
     }
 }
