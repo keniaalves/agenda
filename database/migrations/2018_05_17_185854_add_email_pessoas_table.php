@@ -14,7 +14,7 @@ class AddEmailPessoasTable extends Migration
     public function up()
     {
         Schema::table('pessoas', function (Blueprint $table) {
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
         });
     }
 

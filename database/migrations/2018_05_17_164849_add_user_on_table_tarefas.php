@@ -14,7 +14,7 @@ class AddUserOnTableTarefas extends Migration
     public function up()
     {
         Schema::table('tarefas', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
         });
     }
 

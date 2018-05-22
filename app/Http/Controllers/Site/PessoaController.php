@@ -60,7 +60,7 @@ class PessoaController extends Controller
 
             $user = User::where('users.email', '=', $request->email)->get();
 
-            if(!$user->all()){
+            if(!empty($user->all())){
                 $job = (new ConvidaPessoa($pessoa))->onQueue('convida');
                 $this->dispatch($job);
             }

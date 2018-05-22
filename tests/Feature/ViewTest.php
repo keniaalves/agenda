@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ViewTest extends TestCase
 {
@@ -13,10 +14,6 @@ class ViewTest extends TestCase
      *
      * @return void
      */
-    // public function testExample()
-    // {
-    //     $this->assertTrue(true);
-    // }
 
     public function testViewPessoa(){
         $this->get('pessoasList')->assertStatus(302);
@@ -38,11 +35,5 @@ class ViewTest extends TestCase
         $this->post('tarefasStore')->assertStatus(302);
         $this->put('tarefasUpdate/{id}')->assertStatus(302);
         $this->delete('tarefasDelete/{id}')->assertStatus(302);
-    }
-
-    public function testDatabase(){
-        $this->assertDatabaseHas('users', [
-            'email'=> 'kap-araujo@outlook.com'
-        ]);
     }
 }

@@ -49,17 +49,15 @@ class TarefaController extends Controller
     public function store(Request $request)
     {
         try{
-            $tarefa = new Tarefa($request->all());
-            $tarefa->data = Carbon::createFromFormat('m/d/Y',$tarefa->data);
-            $user = Auth::user();
+            $tarefa          = new Tarefa($request->all());
+            $tarefa->data    = Carbon::createFromFormat('m/d/Y',$tarefa->data);
+            $user            = Auth::user();
             $tarefa->user_id = Auth::id();
             $tarefa->save();
 
             $tarefa->pessoas()->attach($request->pessoas_id);
             
             $user->notify(new NovaTarefaUsuario());  
-            
-            // $this->dispatch(new NotificacaoTarefaEmail($tarefa))->delay(60);
 
             $job = (new NotificacaoTarefaEmail($tarefa))->onQueue('teste')->delay($tarefa->data);
             $this->dispatch($job);
