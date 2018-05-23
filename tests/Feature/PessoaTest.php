@@ -9,11 +9,16 @@ class PessoaTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * Testa se, ao salvar um novo contato, retorna o status HTTP e a página corretos e checa se armazenou corretamente no banco pelo email.
+     *
+     * @return void
+     */
     public function testSeSalvaPessoa()
     {
         $this->signIn();
 
-        $pessoa              = factory('App\Pessoa')->make();
+        $pessoa = factory('App\Pessoa')->make();
 
         $this->post(route('pessoas/pessoasStore'), $pessoa->toArray())
             ->assertStatus(200)
@@ -22,21 +27,69 @@ class PessoaTest extends TestCase
         $this->assertDatabaseHas('pessoas', ['email'=> $pessoa->email]);
     }
 
+    /**
+     * Testa se, ao atualizar um contato, retorna o status HTTP e a página corretos e checa se armazenou corretamente no banco pelo email.
+     *
+     * @return void
+     */
     public function testSeAtualizaPessoa()
     {
         $this->signIn();
 
         $pessoa = factory('App\Pessoa')->create();
         $this->put(route('pessoas/pessoasUpdate', $pessoa->id), $pessoa->toArray())
-            ->assertStatus(200);
+            ->assertStatus(200)
+            ->assertSee('Você conseguiu atualizar um Contato!');
+        $this->assertDatabaseHas('pessoas', ['email'=> $pessoa->email]);
     }
 
-    public function seDeletaPessoa()
+    /**
+     * Testa se, ao deletar um contato, retorna o status HTTP correto, apaga da lista de contatos na view e no banco de dados existe um soft delete para ele.
+     *
+     * @return void
+     */
+    public function testSeDeletaPessoa()
     {
         $this->signIn();
 
-        $user = factory('App\Pessoa')->create();
-        $this->delete(route('pessoas/pessoasDelete'), $user->toArray())
-            ->assertStatus(200);
+        $pessoa = factory('App\Pessoa')->create();
+        $this->delete(route('pessoas/pessoasDelete', $pessoa->id), $pessoa->toArray())
+            ->assertStatus(200)
+            ->assertDontSee($pessoa->nome);
+        $this->assertSoftDeleted(
+            'pessoas',
+            ['email' => $pessoa->email]
+        );
+    }
+
+    /**
+     * Testa se, ao exibir um contato, retorna o status HTTP correto e mostra o nome do contato na view.
+     *
+     * @return void
+     */
+    public function testSeMostraPessoa()
+    {
+        $this->signIn();
+
+        $pessoa = factory('App\Pessoa')->create();
+
+        $this->get(route('pessoas/pessoasShow', $pessoa->id), $pessoa->toArray())
+        ->assertStatus(200)
+        ->assertSee($pessoa->nome);
+    }
+
+    /**
+     * Testa se, ao exibir uma lista de contatos, retorna o status HTTP correto e, deverá ser implementada uma forma de checar os dados na view.
+     *
+     * @return void
+     */
+    public function testSeListaPessoas()
+    {
+        $this->signIn();
+
+        $pessoa = factory('App\Pessoa', 3)->create();
+
+        $this->get(route('pessoas/pessoasList'), $pessoa->toArray())
+        ->assertStatus(200);
     }
 }
