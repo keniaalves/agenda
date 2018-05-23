@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\NovaTarefaUsuario;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotificacaoUsuario
 {
@@ -26,7 +24,7 @@ class NotificacaoUsuario
      */
     public function handle(NovaTarefaUsuario $event)
     {
-        $tarefa = $event->tarefa;
+        $tarefa             = $event->tarefa;
         $tarefa->comentario = 'testando evento';
         $tarefa->save();
     }

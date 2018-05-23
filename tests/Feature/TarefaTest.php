@@ -5,16 +5,16 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class PessoaTest extends TestCase
+class TarefaTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testSeSalvaPessoa()
+    public function testSeSalvaTarefa()
     {
         $this->signIn();
 
-        $user = factory('App\Pessoa')->make();
-        $this->post(route('pessoas/pessoasStore'), $user->toArray())
+        $user = factory('App\Tarefa')->make();
+        $this->post(route('tarefas/tarefasStore'), $user->toArray())
             ->assertStatus(200);
     }
 }

@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
             $carbon->setLocale('pt_BR');
         });
 
-        Queue::after(function (JobProcessed $event) {   
+        Queue::after(function ($event) {   
         });
         
         Schema::defaultStringLength(191);
