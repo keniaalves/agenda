@@ -11,6 +11,8 @@ $factory->define(App\Pessoa::class, function (Faker $faker) {
         'aniversario' => $data->format('m/d/Y'),
         'telefone'    => $faker->tollFreephoneNumber,
         'email'       => $faker->email,
-        'user_id'     => null
+        'user_id'     => function () {
+            return factory('App\User')->create()->id;
+        }
     ];
 });

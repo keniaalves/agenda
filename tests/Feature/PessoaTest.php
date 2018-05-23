@@ -44,7 +44,7 @@ class PessoaTest extends TestCase
     }
 
     /**
-     * Testa se, ao deletar um contato, retorna o status HTTP correto, apaga da lista de contatos na view e no banco de dados existe um soft delete para ele.
+     * Testa se, ao deletar um contato, retorna o status HTTP correto, apaga o contatos na view e no banco de dados existe um soft delete para ele.
      *
      * @return void
      */
