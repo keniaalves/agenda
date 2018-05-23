@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style')
+<link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css" />
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -30,7 +32,7 @@
                             <label for="aniversario" class="col-md-4 col-form-label text-md-right">{{ __('Nascimento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="aniversario" type="date" class="form-control{{ $errors->has('aniversario') ? ' is-invalid' : '' }}" name="aniversario" value="{{ $pessoas->aniversario }}" required>
+                                <input id="aniversario" type="text" class="form-control{{ $errors->has('aniversario') ? ' is-invalid' : '' }}" name="aniversario" value="{{ $pessoas->aniversario }}" required>
 
                                 @if ($errors->has('aniversario'))
                                     <span class="invalid-feedback">
@@ -82,4 +84,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript" src="/vendor/daterangepicker/moment.js"></script>
+<script type="text/javascript" src="/vendor/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/js/create.js"></script>
 @endsection
