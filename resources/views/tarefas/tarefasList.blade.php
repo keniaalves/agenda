@@ -13,7 +13,7 @@
                     <label>Período</label>
                     <input type="number" name="periodo" class="form-control">
                     <label>Quantidade de pessoas</label>
-                    <input type="number" name="quantidadepessoas" class="form-control">
+                    <input dusk="quantidade-pessoas" type="number" name="quantidadepessoas" class="form-control">
                     <table class="table" id="table2">
                         <thead>
                             <tr>
