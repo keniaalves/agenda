@@ -11,6 +11,8 @@ $factory->define(App\Tarefa::class, function (Faker $faker) {
         'descricao'          => $faker->realText,
         'data'               => $data->format('m/d/Y'),
         'comentario'         => $faker->realText,
-        'user_id'            => null
+        'user_id'     => function () {
+            return factory('App\User')->create()->id;
+        }
     ];
 });

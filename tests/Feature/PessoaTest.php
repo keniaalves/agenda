@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class PessoaTest extends TestCase
 {
     use DatabaseMigrations;
+    //use DatabaseRefresh;
+    //use DatabaseTransactions;
 
     /**
      * Testa se, ao salvar um novo contato, retorna o status HTTP e a página corretos e checa se armazenou corretamente no banco pelo email.
@@ -91,5 +93,19 @@ class PessoaTest extends TestCase
 
         $this->get(route('pessoas/pessoasList'), $pessoa->toArray())
         ->assertStatus(200);
+    }
+
+    public function testPessoaComMultiplasTarefas()
+    {
+        $this->signIn();
+        // $pessoas = factory('App\Pessoa', 3)->create()->each(function ($pessoa) {
+        //     $pessoa->tarefas()->saveMany(factory('App\Tarefa', 5)->create());
+        // });
+        $pessoas = factory('App\Pessoa')->create();
+        $tarefas = factory('App\Tarefa', 5)->create();
+
+        $pessoas->tarefas()->setRelation('tarefas', $tarefas);
+
+        $this->assertEquals($pessoas->id, $tarefas->id);
     }
 }

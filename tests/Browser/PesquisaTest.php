@@ -10,7 +10,7 @@ class PesquisaTest extends DuskTestCase
 {
     /**
      * Testa a pesquisa de tarefas que filtra e mostra na página de listagem as tarefas de acordo com a quantidade de pessoas informada
-     *
+     * Povoar a tabela antes de executar o teste pra não ter que pegar um dado específico. Limpar a tabela depois.
      * @return void
      */
     public function testPesquisaTarefasPelaQuantidadePessoas()
@@ -19,7 +19,7 @@ class PesquisaTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit('/tarefasList')
                     ->click('@quantidade-pessoas', 2)
-                    ->assertSee('Tarefa com duas pessoas');
+                    ->assertSee('mimimi');
         });
     }
 }
