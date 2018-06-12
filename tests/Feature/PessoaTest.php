@@ -104,8 +104,16 @@ class PessoaTest extends TestCase
         $pessoas = factory('App\Pessoa')->create();
         $tarefas = factory('App\Tarefa', 5)->create();
 
-        $pessoas->tarefas()->setRelation('tarefas', $tarefas);
+        //$pessoas->tarefas()->setRelation('tarefas', $tarefas);
 
-        $this->assertEquals($pessoas->id, $tarefas->id);
+        $pessoas = factory('App\Pessoa', 3)->create()->each(function ($pessoa) {
+            $pessoa->tarefas()->create(factory('App\Tarefa', 5)->create());
+        });
+
+        $pessoas->each(function ($pessoa) {
+            factory('App\Pessoa', 5)->create(['pessoa_id' => $pessoa->id])->create();
+        });
+
+        $this->assertTrue($pessoa->tarefas->contains($tarefa));
     }
 }
